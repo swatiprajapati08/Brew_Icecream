@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1020323098813",
+    "firebase_url": "https://swati-brew-crew.firebaseio.com",
+    "project_id": "swati-brew-crew",
+    "storage_bucket": "swati-brew-crew.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1020323098813:android:81e7f2d889a22f65fe07d4",
+        "android_client_info": {
+          "package_name": "com.swati.brew_crew"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1020323098813-6iu6e4ssd16dps481mt9dif174g49ltg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATNZNMrA8ICAmlU75IPgYYgAA5-TNFzEI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1020323098813-6iu6e4ssd16dps481mt9dif174g49ltg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
