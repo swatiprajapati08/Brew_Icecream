@@ -1,24 +1,39 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:brew_crew/models/brew.dart';
 
 class DatabaseService {
-
   final String uid;
-  DatabaseService({ this.uid });
+  DatabaseService({this.uid});
 
   // collection reference
-  final CollectionReference brewCollection = Firestore.instance.collection('brews');
+  final CollectionReference brewCollection =
+      Firestore.instance.collection('brews');
 
-  Future<void> updateUserData(String favour, String name, int noOfscoop,int mixture) async {
+  Future<void> updateUserData(
+      String favour, String name, int noOfscoop, int mixture) async {
     return await brewCollection.document(uid).setData({
       'favour': favour,
       'name': name,
       'noOfscoop': noOfscoop,
-      'mixture' :mixture,
+      'mixture': mixture,
     });
   }
+
+//brew list from snapshot
+  List<Brew> _brewListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return Brew(
+        favour: doc.data['favour'] ?? '',
+        mixture: doc.data['mixture'] ?? 0,
+        noOfScoops: doc.data['noOfscoop'] ?? 1,
+        name: doc.data['name'] ?? '',
+      );
+    }).toList();
+  }
+
 //get brews stream
 
-Stream<QuerySnapshot> get brews{
-  return brewCollection.snapshots();
-}
+  Stream<List<Brew>> get brews {
+    return brewCollection.snapshots().map(_brewListFromSnapshot);
+  }
 }
