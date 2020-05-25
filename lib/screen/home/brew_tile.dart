@@ -10,11 +10,11 @@ class BrewTile extends StatelessWidget {
     var listTile = ListTile(
           leading: CircleAvatar(
             radius: 25.0,
-            backgroundColor: Colors.pink[brew.noOfScoops],
+            backgroundColor: Colors.pink[brew.mixture],
           ),
           title: Text(brew.name),
          // if(brew.mixture>0) ? brew.mixture : 0; 
-          subtitle: Text('Want Flavour ${brew.favour} and mixture ${brew.mixture}'),
+          subtitle: Text('Want Flavour ${brew.favour} and Scoop ${brew.noOfscoop}'),
         );
     return Padding(
       padding: EdgeInsets.only(top: 8.0),

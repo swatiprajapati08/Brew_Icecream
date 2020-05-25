@@ -22,7 +22,7 @@ class _SettingFormState extends State<SettingForm> {
 
   String _currentname;
   String _currentfalvour;
-  int _currentnoOfScoops;
+  int _currentnoOfscoop;
   int _currentmixture;
 
   @override
@@ -80,15 +80,15 @@ class _SettingFormState extends State<SettingForm> {
                   ),
                   Slider(
                     value:
-                        (_currentnoOfScoops ?? userData.noOfScoops).toDouble(),
+                        (_currentnoOfscoop ?? userData.noOfscoop).toDouble(),
                     activeColor:
-                        Colors.pink[_currentnoOfScoops ?? userData.noOfScoops],
+                        Colors.pink[_currentnoOfscoop ?? userData.noOfscoop],
                     inactiveColor: Colors.blue,
                     min: 100.0,
                     max: 900.0,
                     divisions: 8,
                     onChanged: (val) {
-                      setState(() => _currentnoOfScoops = val.round());
+                      setState(() => _currentnoOfscoop = val.round());
                     },
                   ),
                   RaisedButton(
@@ -99,7 +99,7 @@ class _SettingFormState extends State<SettingForm> {
                         await DatabaseService(uid: user.uid).updateUserData(
                             _currentfalvour ?? userData.falvour,
                             _currentname ?? userData.name,
-                            _currentnoOfScoops ?? userData.noOfScoops,
+                            _currentnoOfscoop ?? userData.noOfscoop,
                             _currentmixture ?? userData.mixture);
                       }
                     },

@@ -26,7 +26,7 @@ class DatabaseService {
       return Brew(
         favour: doc.data['favour'] ?? '',
         mixture: doc.data['mixture'] ?? 100,
-        noOfScoops: doc.data['noOfScoops'] ?? 100,
+        noOfscoop: doc.data['noOfscoop'] ?? 100,
         name: doc.data['name'] ?? '',
       );
     }).toList();
@@ -39,7 +39,7 @@ UserData _userDatafromSnapshot(DocumentSnapshot snapshot)
     uid: uid,
     name:snapshot.data['name'],
     falvour: snapshot.data['falvour'],
-    noOfScoops: snapshot.data['noOfscoop'],
+    noOfscoop: snapshot.data['noOfscoop'],
     mixture: snapshot.data['mixture'],
   );
 }
