@@ -8,14 +8,15 @@ class BrewTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var listTile = ListTile(
-          leading: CircleAvatar(
-            radius: 25.0,
-            backgroundColor: Colors.pink[brew.mixture],
-          ),
-          title: Text(brew.name),
-         // if(brew.mixture>0) ? brew.mixture : 0; 
-          subtitle: Text('Want Flavour ${brew.favour} and Scoop ${brew.noOfscoop}'),
-        );
+      leading: CircleAvatar(
+        radius: 25.0,
+        backgroundColor: Colors.pink[brew.mixture],
+        backgroundImage: AssetImage('assets/sweets.png'),
+      ),
+      title: Text(brew.name),
+      // if(brew.mixture>0) ? brew.mixture : 0;
+      subtitle: Text('Want Flavour ${brew.favour} and Scoop ${brew.noOfscoop}'),
+    );
     return Padding(
       padding: EdgeInsets.only(top: 8.0),
       child: Card(
