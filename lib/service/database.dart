@@ -25,8 +25,8 @@ class DatabaseService {
     return snapshot.documents.map((doc) {
       return Brew(
         favour: doc.data['favour'] ?? '',
-        mixture: doc.data['mixture'] ?? 0,
-        noOfScoops: doc.data['noOfscoop'] ?? 1,
+        mixture: doc.data['mixture'] ?? 100,
+        noOfScoops: doc.data['noOfscoop'] ?? 100,
         name: doc.data['name'] ?? '',
       );
     }).toList();
