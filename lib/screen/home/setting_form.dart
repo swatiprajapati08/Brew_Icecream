@@ -1,5 +1,6 @@
 import 'package:brew_crew/models/user.dart';
 import 'package:brew_crew/service/database.dart';
+
 import 'package:brew_crew/shared/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:brew_crew/shared/constants.dart';
@@ -21,7 +22,7 @@ class _SettingFormState extends State<SettingForm> {
 
   String _currentname;
   String _currentfalvour;
-  int _currentnoOfscoop;
+  int _currentnoOfScoops;
   int _currentmixture;
 
   @override
@@ -29,7 +30,7 @@ class _SettingFormState extends State<SettingForm> {
     final user = Provider.of<User>(context);
     return StreamBuilder<UserData>(
         stream: DatabaseService(uid: user.uid).userData,
-        builder: (context, snapshot){
+        builder: (context, snapshot) {
           if (snapshot.hasData) {
             UserData userData = snapshot.data;
             return Form(
@@ -53,7 +54,8 @@ class _SettingFormState extends State<SettingForm> {
                   //Dropdown
                   Slider(
                     value: (_currentmixture ?? userData.mixture).toDouble(),
-                    activeColor: Colors.pink[_currentmixture ?? userData.mixture],
+                    activeColor:
+                        Colors.pink[_currentmixture ?? userData.mixture],
                     inactiveColor: Colors.blue,
                     min: 100.0,
                     max: 500.0,
@@ -77,24 +79,29 @@ class _SettingFormState extends State<SettingForm> {
                     },
                   ),
                   Slider(
-                    value: (_currentnoOfscoop ?? userData.noOfscoop).toDouble(),
-                    activeColor: Colors.pink[_currentnoOfscoop ?? userData.noOfscoop],
+                    value:
+                        (_currentnoOfScoops ?? userData.noOfScoops).toDouble(),
+                    activeColor:
+                        Colors.pink[_currentnoOfScoops ?? userData.noOfScoops],
                     inactiveColor: Colors.blue,
                     min: 100.0,
                     max: 900.0,
                     divisions: 8,
                     onChanged: (val) {
-                      setState(() => _currentnoOfscoop = val.round());
+                      setState(() => _currentnoOfScoops = val.round());
                     },
                   ),
                   RaisedButton(
                     color: Colors.pink,
                     child: Text('Update'),
                     onPressed: () async {
-                      print(_currentname);
-                      print(_currentmixture);
-                      print(_currentfalvour);
-                      print(_currentnoOfscoop);
+                      if (_formKey.currentState.validate()) {
+                        await DatabaseService(uid: user.uid).updateUserData(
+                            _currentfalvour ?? userData.falvour,
+                            _currentname ?? userData.name,
+                            _currentnoOfScoops ?? userData.noOfScoops,
+                            _currentmixture ?? userData.mixture);
+                      }
                     },
                   ),
                 ],
