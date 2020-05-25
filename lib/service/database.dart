@@ -1,3 +1,4 @@
+import 'package:brew_crew/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:brew_crew/models/brew.dart';
 
@@ -30,10 +31,31 @@ class DatabaseService {
       );
     }).toList();
   }
+  //userdata from Snapshot
+
+UserData _userDatafromSnapshot(DocumentSnapshot snapshot)
+{
+  return UserData(
+    uid: uid,
+    name:snapshot.data['name'],
+    falvour: snapshot.data['falvour'],
+    noOfscoop: snapshot.data['noOfscoop'],
+    mixture: snapshot.data['mixture'],
+  );
+}
+
 
 //get brews stream
 
   Stream<List<Brew>> get brews {
     return brewCollection.snapshots().map(_brewListFromSnapshot);
+  }
+
+
+
+  //get user doc system
+
+  Stream<UserData> get userData{
+    return brewCollection.document(uid).snapshots().map(_userDatafromSnapshot);
   }
 }
